@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASEANA Coffee</title>
+    <!-- Logo di tab browser -->
+    <link rel="icon" type="image/png" href="a.jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Nav Glassmorphism */
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Custom Transitions */
+        .cart-sidebar {
+            transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+        }
+    </style>
+</head>
+
+<body class="bg-stone-50 text-stone-900 overflow-x-hidden">
+
+    <nav class="bg-white/80 backdrop-blur-xl border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter text-orange-950 font-serif italic">ASEANA<span
+                    class="text-stone-400 font-sans font-light not-italic tracking-widest ml-1 text-sm">COFFEE</span>
+            </div>
+
+            <div class="hidden md:flex space-x-10 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500">
+                <a href="index.html" class="text-orange-950 border-b border-orange-950">Beranda</a>
+                <a href="produk.html" class="text-orange-950 border-b border-orange-950">Koleksi Kopi</a>
+                <a href="tentang.html" class="text-orange-950 border-b border-orange-950">Gallery</a>
+                <a href="kontak.html" class="text-orange-950 border-b border-orange-950">Kontak</a>
+            </div>
+
+            <button onclick="window.open('https://wa.me/6281234567890')"
+                class="bg-stone-900 text-white px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-orange-900 transition">Live
+                Chat</button>
+        </div>
+    </nav>
+
+    <header class="py-24 bg-stone-50 border-b border-stone-100">
+        <div class="max-w-4xl mx-auto px-6 text-center animate__animated animate__fadeIn">
+            <span class="uppercase tracking-[0.5em] text-xs mb-6 block text-orange-300">Est. 2026 • Premium
+                Roastery</span>
+            <h1 class="text-5xl md:text-7xl font-serif italic mb-6">Nikmati Kopi <br> Sempurna Anda</h1>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#shop"
+                    class="bg-orange-800 hover:bg-orange-900 text-white px-10 py-4 font-bold uppercase text-[11px] tracking-widest transition shadow-xl">Belanja
+                    Sekarang</a>
+                <a href="#about"
+                    class="border border-white/50 hover:bg-white hover:text-black px-10 py-4 font-bold uppercase text-[11px] tracking-widest transition">Pelajari
+                    Lebih Lanjut</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-24 bg-white border-b border-stone-100">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-16 text-center">
+            <div class="animate__animated animate__fadeInUp">
+                <i class="fa-solid fa-seedling text-3xl text-orange-900 mb-6"></i>
+                <h3 class="text-xl font-serif mb-3">Biji Pilihan</h3>
+                <p class="text-sm text-stone-500 leading-relaxed">Hanya 5% biji kopi terbaik yang lolos standar seleksi
+                    ketat kami untuk Anda.</p>
+            </div>
+            <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                <i class="fa-solid fa-fire-flame-curved text-3xl text-orange-900 mb-6"></i>
+                <h3 class="text-xl font-serif mb-3">Sangrai Presisi</h3>
+                <p class="text-sm text-stone-500 leading-relaxed">Teknologi sensor suhu memastikan profil rasa yang
+                    konsisten di setiap batch.</p>
+            </div>
+            <div class="animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                <i class="fa-solid fa-truck-fast text-3xl text-orange-900 mb-6"></i>
+                <h3 class="text-xl font-serif mb-3">Freshly Roasted</h3>
+                <p class="text-sm text-stone-500 leading-relaxed">Kopi dikirim maksimal 48 jam setelah proses sangrai
+                    selesai.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="py-32 bg-stone-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-serif mb-4">Koleksi Unggulan</h2>
+                <div class="flex justify-center gap-4 mt-8">
+                    <button onclick="filterShop('all')"
+                        class="filter-btn active text-[11px] uppercase font-bold tracking-widest px-6 py-2 border-b-2 border-orange-800">Semua</button>
+                    <button onclick="filterShop('Arabica')"
+                        class="filter-btn text-[11px] uppercase font-bold tracking-widest px-6 py-2 border-b-2 border-transparent text-stone-400 hover:text-stone-900">Arabica</button>
+                    <button onclick="filterShop('Robusta')"
+                        class="filter-btn text-[11px] uppercase font-bold tracking-widest px-6 py-2 border-b-2 border-transparent text-stone-400 hover:text-stone-900">Robusta</button>
+                </div>
+            </div>
+
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            </div>
+        </div>
+    </section>
+    <section id="reviews" class="py-32 bg-stone-50 overflow-hidden border-t border-stone-200">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="mb-16 text-center md:text-left">
+                <span
+                    class="text-orange-800 text-[10px] font-bold uppercase tracking-[0.4em] mb-4 block">Testimoni</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-stone-900">Suara Para Penyeduh</h2>
+            </div>
+
+            <div id="review-slider"
+                class="flex overflow-x-auto gap-6 pb-12 snap-x snap-mandatory scrollbar-hide scroll-smooth"
+                style="scrollbar-width: none; -ms-overflow-style: none;">
+
+                <div class="min-w-full md:min-w-[calc(100%/3-16px)] snap-center">
+                    <div
+                        class="bg-white p-10 rounded-[2rem] border border-stone-100 shadow-sm h-full flex flex-col justify-between transition-all duration-500 hover:shadow-md">
+                        <p class="text-stone-700 italic mb-8 leading-relaxed">"Aromanya sangat konsisten. Roast
+                            profile-nya pas, tidak terlalu oily tapi body-nya dapet banget. Langganan buat seduhan
+                            pagi."</p>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center font-bold text-stone-400 text-[10px]">
+                                AS</div>
+                            <div>
+                                <h4 class="font-bold text-[11px] uppercase tracking-widest text-stone-900">Andi Saputra
+                                </h4>
+                                <p class="text-[9px] text-stone-400 uppercase font-bold">Penikmat Arabica</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="min-w-full md:min-w-[calc(100%/3-16px)] snap-center">
+                    <div
+                        class="bg-white p-10 rounded-[2rem] border border-stone-100 shadow-sm h-full flex flex-col justify-between transition-all duration-500 hover:shadow-md">
+                        <p class="text-stone-700 italic mb-8 leading-relaxed">"Pengiriman cepat dan packing sangat rapi
+                            menggunakan valve. Biji kopi masih fresh saat sampai. House blend-nya juara."</p>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center font-bold text-stone-400 text-[10px]">
+                                RM</div>
+                            <div>
+                                <h4 class="font-bold text-[11px] uppercase tracking-widest text-stone-900">Rina Mahendra
+                                </h4>
+                                <p class="text-[9px] text-stone-400 uppercase font-bold">Home Brewer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="min-w-full md:min-w-[calc(100%/3-16px)] snap-center">
+                    <div
+                        class="bg-white p-10 rounded-[2rem] border border-stone-100 shadow-sm h-full flex flex-col justify-between transition-all duration-500 hover:shadow-md">
+                        <p class="text-stone-700 italic mb-8 leading-relaxed">"Sangat suka dengan packaging-nya yang
+                            minimalis. Rasanya clean dan aftertaste-nya manis. Sangat worth it."</p>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center font-bold text-stone-400 text-[10px]">
+                                DW</div>
+                            <div>
+                                <h4 class="font-bold text-[11px] uppercase tracking-widest text-stone-900">Dito Wahyu
+                                </h4>
+                                <p class="text-[9px] text-stone-400 uppercase font-bold">Daily Drinker</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="min-w-full md:min-w-[calc(100%/3-16px)] snap-center">
+                    <div
+                        class="bg-white p-10 rounded-[2rem] border border-stone-100 shadow-sm h-full flex flex-col justify-between transition-all duration-500 hover:shadow-md">
+                        <p class="text-stone-700 italic mb-8 leading-relaxed">"Aromanya sangat konsisten. Roast
+                            profile-nya pas, tidak terlalu oily tapi body-nya dapet banget. Langganan buat seduhan
+                            pagi."</p>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center font-bold text-stone-400 text-[10px]">
+                                AS</div>
+                            <div>
+                                <h4 class="font-bold text-[11px] uppercase tracking-widest text-stone-900">Andi Saputra
+                                </h4>
+                                <p class="text-[9px] text-stone-400 uppercase font-bold">Penikmat Arabica</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="min-w-full md:min-w-[calc(100%/3-16px)] snap-center">
+                    <div
+                        class="bg-white p-10 rounded-[2rem] border border-stone-100 shadow-sm h-full flex flex-col justify-between transition-all duration-500 hover:shadow-md">
+                        <p class="text-stone-700 italic mb-8 leading-relaxed">"Aromanya sangat konsisten. Roast
+                            profile-nya pas, tidak terlalu oily tapi body-nya dapet banget. Langganan buat seduhan
+                            pagi."</p>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center font-bold text-stone-400 text-[10px]">
+                                AS</div>
+                            <div>
+                                <h4 class="font-bold text-[11px] uppercase tracking-widest text-stone-900">Andi Saputra
+                                </h4>
+                                <p class="text-[9px] text-stone-400 uppercase font-bold">Penikmat Arabica</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="min-w-full md:min-w-[calc(100%/3-16px)] snap-center">
+                    <div
+                        class="bg-white p-10 rounded-[2rem] border border-stone-100 shadow-sm h-full flex flex-col justify-between transition-all duration-500 hover:shadow-md">
+                        <p class="text-stone-700 italic mb-8 leading-relaxed">"Aromanya sangat konsisten. Roast
+                            profile-nya pas, tidak terlalu oily tapi body-nya dapet banget. Langganan buat seduhan
+                            pagi."</p>
+                        <div class="flex items-center gap-4">
+                            <div
+                                class="w-10 h-10 bg-stone-100 rounded-full flex items-center justify-center font-bold text-stone-400 text-[10px]">
+                                AS</div>
+                            <div>
+                                <h4 class="font-bold text-[11px] uppercase tracking-widest text-stone-900">Andi Saputra
+                                </h4>
+                                <p class="text-[9px] text-stone-400 uppercase font-bold">Penikmat Arabica</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-2 mt-4">
+                <div class="dot w-2 h-2 rounded-full bg-orange-800 transition-all duration-300"></div>
+                <div class="dot w-2 h-2 rounded-full bg-stone-300 transition-all duration-300"></div>
+                <div class="dot w-2 h-2 rounded-full bg-stone-300 transition-all duration-300"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const slider = document.getElementById('review-slider');
+        const dots = document.querySelectorAll('.dot');
+        let currentIndex = 0;
+        const totalCards = 3;
+
+        function updateDots(index) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('bg-orange-800', i === index);
+                dot.classList.toggle('bg-stone-300', i !== index);
+                dot.style.width = i === index ? '24px' : '8px'; // Efek lonjong pada dot aktif
+            });
+        }
+
+        function autoScroll() {
+            currentIndex++;
+            if (currentIndex >= totalCards) {
+                currentIndex = 0;
+            }
+
+            const scrollAmount = slider.scrollWidth / totalCards;
+            slider.scrollTo({
+                left: scrollAmount * currentIndex,
+                behavior: 'smooth'
+            });
+
+            updateDots(currentIndex);
+        }
+
+        // Jalankan setiap 5 detik (5000ms)
+        let scrollInterval = setInterval(autoScroll, 5000);
+
+        // Pause saat disentuh/hover
+        slider.addEventListener('mouseenter', () => clearInterval(scrollInterval));
+        slider.addEventListener('mouseleave', () => scrollInterval = setInterval(autoScroll, 5000));
+        slider.addEventListener('touchstart', () => clearInterval(scrollInterval));
+    </script>
+
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .dot {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+    <footer id="about" class="bg-stone-950 text-white pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-16 mb-20">
+                <div class="col-span-2">
+                    <h2 class="text-3xl font-serif mb-8">ASEANA COFFEE</h2>
+                    <p class="text-stone-500 leading-relaxed max-w-sm">Membawa tradisi sangrai kopi terbaik nusantara ke
+                        seluruh dunia. Dedikasi kami adalah pada rasa, petani, dan keberlanjutan.</p>
+                </div>
+                <div>
+                    <h4 class="text-[11px] uppercase tracking-widest text-orange-500 font-bold mb-6">Hubungi Kami</h4>
+                    <p class="text-stone-400 text-sm">Jakarta Selatan, Indonesia<br>+62 812 3456
+                        7890<br>hello@aseanacoffee.id</p>
+                </div>
+                <div>
+                    <h4 class="text-[11px] uppercase tracking-widest text-orange-500 font-bold mb-6">Ikuti Kami</h4>
+                    <div class="flex space-x-6 text-xl text-stone-400">
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-stone-900 pt-12 text-center text-[10px] text-stone-600 tracking-widest">
+                &copy; 2026 ASEANA Coffee Roastery. All Rights
+                Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <div id="cart-sidebar"
+        class="cart-sidebar fixed top-0 right-0 h-full w-full md:w-[450px] bg-white shadow-2xl z-[60] transform translate-x-full flex flex-col">
+        <div class="p-8 border-b flex justify-between items-center">
+            <h2 class="text-xl font-serif uppercase tracking-widest">Keranjang Belanja</h2>
+            <button onclick="toggleCart()"><i
+                    class="fa-solid fa-xmark text-xl text-stone-400 hover:text-black"></i></button>
+        </div>
+        <div id="cart-items" class="flex-1 overflow-y-auto p-8 space-y-8 hide-scroll">
+        </div>
+        <div class="p-8 border-t bg-stone-50">
+            <div class="flex justify-between mb-8">
+                <span class="uppercase tracking-[0.2em] text-xs font-bold">Total Pembayaran</span>
+                <span id="cart-total" class="text-2xl font-bold text-orange-950">Rp 0</span>
+            </div>
+            <button onclick="checkoutWhatsApp()"
+                class="w-full bg-stone-950 text-white py-5 flex items-center justify-center space-x-4 hover:bg-orange-900 transition-all font-bold uppercase text-[11px] tracking-widest">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Order ke WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="modal-container"
+        class="fixed inset-0 z-[100] hidden items-center justify-center p-4 animate__animated animate__fadeIn">
+        <div class="absolute inset-0 bg-stone-950/80 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div
+            class="bg-white max-w-4xl w-full max-h-[90vh] overflow-hidden rounded-sm shadow-2xl flex flex-col md:flex-row relative z-10">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-stone-400 hover:text-black"><i
+                    class="fa-solid fa-times text-2xl"></i></button>
+            <div class="md:w-1/2 bg-stone-100">
+                <img id="modal-img" src="" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-1/2 p-10 md:p-16 flex flex-col justify-center">
+                <span id="modal-tag"
+                    class="text-[10px] uppercase tracking-[0.4em] text-orange-900 font-bold mb-4"></span>
+                <h2 id="modal-title" class="text-4xl font-serif mb-6 leading-tight"></h2>
+                <div id="modal-price" class="text-2xl font-light mb-8"></div>
+                <p id="modal-desc" class="text-stone-500 text-sm leading-relaxed mb-10 italic"></p>
+                <button id="modal-add-btn"
+                    class="w-full bg-stone-950 text-white py-5 hover:bg-orange-900 transition font-bold uppercase tracking-[0.2em] text-[11px]">Tambah
+                    ke Keranjang</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database
+        const products = [
+            { id: 1, name: "Gayo Reserve", category: "Arabica", roast: "Dark", price: 125000, img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=600", desc: "Body tebal dengan aroma cokelat hitam dan rempah nusantara yang hangat." },
+            { id: 2, name: "Fine Robusta Gold", category: "Robusta", roast: "Dark", price: 65000, img: "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?q=80&w=600", desc: "Robusta premium dengan kemanisan alami kacang panggang yang seimbang." },
+            { id: 3, name: "Ijen Mountain", category: "Arabica", roast: "Medium", price: 110000, img: "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?q=80&w=600", desc: "Cita rasa kompleks dengan sentuhan aroma jeruk dan madu liar." },
+            { id: 4, name: "Bali Kintamani", category: "Arabica", roast: "Medium", price: 105000, img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600", desc: "Keasaman cerah menyerupai jeruk dengan body yang bersih dan ringan." },
+            { id: 5, name: "Toraja Sapan", category: "Arabica", roast: "Medium", price: 135000, img: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=600", desc: "Kopi legendaris dengan profil rasa herbal dan kemanisan karamel yang panjang." },
+            { id: 6, name: "Java Mocha", category: "Robusta", roast: "Dark", price: 85000, img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600", desc: "Kombinasi klasik rasa kopi yang berani dengan sentuhan cokelat." }
+        ];
+
+        let cart = [];
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('nav-scrolled', 'text-stone-900');
+                nav.classList.remove('text-white');
+            } else {
+                nav.classList.remove('nav-scrolled', 'text-stone-900');
+                nav.classList.add('text-white');
+            }
+        });
+
+        // Shop Functionality
+        function renderProducts(category = 'all') {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+
+            filtered.forEach((p, idx) => {
+                grid.innerHTML += `
+                    <div class="product-card group animate__animated animate__fadeInUp" style="animation-delay: ${idx * 0.1}s">
+                        <div class="relative overflow-hidden aspect-[4/5] bg-stone-200 mb-6 rounded-sm">
+                            <img src="${p.img}" class="w-full h-full object-cover transition-transform duration-700">
+                            <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/30 transition-all"></div>
+                            <div class="absolute bottom-6 left-6 right-6 translate-y-full group-hover:translate-y-0 transition-all duration-500 opacity-0 group-hover:opacity-100 flex gap-2">
+                                <button onclick="openModal(${p.id})" class="flex-1 bg-white text-black py-4 font-bold text-[10px] uppercase tracking-widest hover:bg-orange-800 hover:text-white">Quick View</button>
+                                <button onclick="addToCart(${p.id})" class="bg-white text-black px-5 hover:bg-orange-800 hover:text-white"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="text-center px-4">
+                            <p class="text-[9px] uppercase tracking-[0.3em] text-stone-400 font-bold mb-2">${p.category} • ${p.roast} Roast</p>
+                            <h3 class="text-2xl font-serif mb-2">${p.name}</h3>
+                            <p class="text-orange-950 font-bold">Rp ${p.price.toLocaleString()}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterShop(cat) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-orange-800');
+                btn.classList.add('text-stone-400', 'border-transparent');
+            });
+            event.target.classList.add('active', 'border-orange-800');
+            event.target.classList.remove('text-stone-400', 'border-transparent');
+            renderProducts(cat);
+        }
+
+        // Cart Logic
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('translate-x-full');
+        }
+
+        function addToCart(id) {
+            const p = products.find(x => x.id === id);
+            const exists = cart.find(x => x.id === id);
+            if (exists) exists.qty++;
+            else cart.push({ ...p, qty: 1 });
+            updateCartUI();
+            if (!document.getElementById('cart-sidebar').classList.contains('translate-x-0')) toggleCart();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            container.innerHTML = cart.length === 0 ? '<p class="text-center text-stone-400 py-20 uppercase tracking-widest text-[10px]">Keranjang Kosong</p>' : '';
+
+            let total = 0;
+            let count = 0;
+
+            cart.forEach((item, idx) => {
+                total += item.price * item.qty;
+                count += item.qty;
+                container.innerHTML += `
+                    <div class="flex gap-6 animate__animated animate__fadeInRight animate__faster">
+                        <img src="${item.img}" class="w-20 h-24 object-cover">
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-xs uppercase tracking-widest">${item.name}</h4>
+                                <button onclick="removeItem(${idx})" class="text-stone-300 hover:text-red-700 transition"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
+                            <p class="text-sm font-bold text-orange-950 mb-4">Rp ${item.price.toLocaleString()}</p>
+                            <div class="flex items-center gap-4">
+                                <button onclick="changeQty(${idx}, -1)" class="text-stone-400 hover:text-black"><i class="fa-solid fa-minus text-[10px]"></i></button>
+                                <span class="text-xs font-bold">${item.qty}</span>
+                                <button onclick="changeQty(${idx}, 1)" class="text-stone-400 hover:text-black"><i class="fa-solid fa-plus text-[10px]"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('cart-count').innerText = count;
+            document.getElementById('cart-total').innerText = `Rp ${total.toLocaleString()}`;
+        }
+
+        function changeQty(idx, val) {
+            cart[idx].qty += val;
+            if (cart[idx].qty < 1) cart.splice(idx, 1);
+            updateCartUI();
+        }
+
+        function removeItem(idx) {
+            cart.splice(idx, 1);
+            updateCartUI();
+        }
+
+        // Modal Logic
+        function openModal(id) {
+            const p = products.find(x => x.id === id);
+            document.getElementById('modal-img').src = p.img;
+            document.getElementById('modal-tag').innerText = `${p.category} • ${p.roast} ROAST`;
+            document.getElementById('modal-title').innerText = p.name;
+            document.getElementById('modal-price').innerText = `Rp ${p.price.toLocaleString()}`;
+            document.getElementById('modal-desc').innerText = p.desc;
+            document.getElementById('modal-add-btn').onclick = () => { addToCart(p.id); closeModal(); };
+            document.getElementById('modal-container').classList.remove('hidden');
+            document.getElementById('modal-container').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-container').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return alert("Keranjang masih kosong!");
+            let msg = "*PESANAN BARU - ASEANA COFFEE*\n\n";
+            cart.forEach(i => msg += `- ${i.name} (${i.qty}x)\n`);
+            msg += `\n*TOTAL: ${document.getElementById('cart-total').innerText}*`;
+            window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`);
+        }
+
+        // Init
+        renderProducts();
+    </script>
+</body>
+
+</html>

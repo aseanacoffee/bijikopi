@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami | ASEANA Coffee Roastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fcfcfc;
+            color: #1c1917;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .contact-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-field {
+            width: 100%;
+            border-bottom: 2px solid #f3f4f6;
+            padding: 1rem 0;
+            outline: none;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        .input-field:focus {
+            border-bottom-color: #7c2d12;
+        }
+
+        /* Accordion Custom */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Map Placeholder Style */
+        .map-container {
+            filter: grayscale(1) contrast(1.1) opacity(0.8);
+            transition: all 0.6s;
+        }
+
+        .map-container:hover {
+            filter: grayscale(0) opacity(1);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="bg-white/90 backdrop-blur-md border-b border-stone-100 sticky top-0 z-[100]">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter font-serif italic">ASEANA<span
+                    class="text-stone-300 font-sans font-light not-italic tracking-[0.3em] ml-2 text-xs uppercase">Coffee</span></a>
+            <div class="hidden md:flex gap-10 text-[10px] font-bold uppercase tracking-[0.2em] text-stone-400">
+                <a href="index.html" class="text-orange-950 border-b border-orange-950">Beranda</a>
+                <a href="produk.html" class="text-orange-950 border-b border-orange-950">Koleksi Kopi</a>
+                <a href="tentang.html" class="text-orange-950 border-b border-orange-950">Gallery</a>
+                <a href="#" class="text-orange-950 border-b border-orange-950">Hubungi Kami</a>
+            </div>
+            <button onclick="window.open('https://wa.me/6281234567890')"
+                class="bg-stone-900 text-white px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-orange-900 transition">Live
+                Chat</button>
+        </div>
+    </nav>
+
+    <header class="py-24 bg-stone-50 border-b border-stone-100">
+        <div class="max-w-4xl mx-auto px-6 text-center animate__animated animate__fadeIn">
+            <span class="text-orange-800 font-bold text-[10px] uppercase tracking-[0.6em] mb-4 block">Get In
+                Touch</span>
+            <h1 class="text-5xl md:text-7xl font-serif italic mb-6">Mari Berdiskusi <br> Tentang Kopi</h1>
+            <p class="text-stone-400 text-sm leading-relaxed max-w-xl mx-auto">Kami selalu terbuka untuk kolaborasi,
+                pertanyaan seputar produk, atau sekadar berbagi cerita tentang seduhan pagi Anda.</p>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-20">
+
+        <div class="animate__animated animate__fadeInLeft">
+            <h3 class="text-2xl font-serif mb-10 italic">Kirim Pesan</h3>
+            <form id="contactForm" class="space-y-8">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Nama
+                            Lengkap</label>
+                        <input type="text" id="name" required class="input-field" placeholder="Masukkan nama Anda">
+                    </div>
+                    <div>
+                        <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Alamat
+                            Email</label>
+                        <input type="email" id="email" required class="input-field" placeholder="email@contoh.com">
+                    </div>
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Subjek</label>
+                    <select id="subject" class="input-field appearance-none">
+                        <option value="Tanya Produk">Pertanyaan Produk</option>
+                        <option value="Kerjasama">Kerjasama B2B / Reseller</option>
+                        <option value="Kritik Saran">Kritik & Saran</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-[10px] font-bold uppercase tracking-widest text-stone-400">Pesan Anda</label>
+                    <textarea id="message" rows="4" required class="input-field"
+                        placeholder="Tuliskan pesan Anda secara detail..."></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-stone-900 text-white py-5 font-bold uppercase tracking-widest text-[11px] hover:bg-orange-950 transition-all shadow-xl">Kirim
+                    ke WhatsApp</button>
+            </form>
+        </div>
+
+        <div class="space-y-12 animate__animated animate__fadeInRight">
+            <div>
+                <h3 class="text-2xl font-serif mb-8 italic">Informasi Roastery</h3>
+                <div class="grid sm:grid-cols-2 gap-8">
+                    <div class="contact-card bg-white p-8 border border-stone-100">
+                        <i class="fa-solid fa-location-dot text-orange-900 mb-4 text-xl"></i>
+                        <h4 class="font-bold text-xs uppercase tracking-widest mb-2">Alamat</h4>
+                        <p class="text-stone-500 text-xs leading-relaxed">Jl. Kopi Premium No. 45, Jakarta Selatan,
+                            Indonesia 12190</p>
+                    </div>
+                    <div class="contact-card bg-white p-8 border border-stone-100">
+                        <i class="fa-solid fa-clock text-orange-900 mb-4 text-xl"></i>
+                        <h4 class="font-bold text-xs uppercase tracking-widest mb-2">Jam Operasional</h4>
+                        <p class="text-stone-500 text-xs leading-relaxed">Senin - Sabtu<br>09:00 AM - 06:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-lg overflow-hidden h-[300px] border border-stone-100 map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.24131543322!2d106.75947796953123!3d-6.229728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%20Selatan!5e0!3m2!1sid!2sid!4v1711234567890!5m2!1sid!2sid"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-white text-center border-t border-stone-100">
+        <p class="text-[10px] uppercase tracking-[0.5em] text-stone-300">&copy; 2026 ASEANA Coffee Roastery. All Rights
+            Reserved.</p>
+    </footer>
+
+    <script>
+        // FAQ TOGGLE LOGIC
+        function toggleFaq(el) {
+            const isActive = el.classList.contains('active');
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            // Open clicked if not previously active
+            if (!isActive) el.classList.add('active');
+        }
+
+        // WHATSAPP FORM LOGIC
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            const waNumber = "6281234567890"; // Ganti dengan nomor WhatsApp Anda
+
+            const fullMessage = `*HALO ASEANA COFFEE*\n\n` +
+                `*Nama:* ${name}\n` +
+                `*Email:* ${email}\n` +
+                `*Subjek:* ${subject}\n\n` +
+                `*Pesan:* ${message}`;
+
+            const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(fullMessage)}`;
+            window.open(waUrl, '_blank');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerita Kami | ASEANA Coffee Roastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transition: all 1.2s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal.fade-bottom {
+            transform: translateY(50px);
+        }
+    </style>
+</head>
+
+<body class="bg-stone-50 text-stone-900">
+
+    <nav class="bg-white/80 backdrop-blur-xl border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter text-orange-950 font-serif italic">ASEANA<span
+                    class="text-stone-400 font-sans font-light not-italic tracking-widest ml-1 text-sm">COFFEE</span>
+            </div>
+
+            <div class="hidden md:flex space-x-10 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500">
+                <a href="index.html" class="text-orange-950 border-b border-orange-950">Beranda</a>
+                <a href="produk.html" class="text-orange-950 border-b border-orange-950">Koleksi Kopi</a>
+                <a href="tentang.html" class="text-orange-950 border-b border-orange-950">Gallery</a>
+                <a href="kontak.html" class="text-orange-950 border-b border-orange-950">Kontak</a>
+            </div>
+
+            <button onclick="window.open('https://wa.me/6281234567890')"
+                class="bg-stone-900 text-white px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-orange-900 transition">Live
+                Chat</button>
+        </div>
+    </nav>
+
+    <header class="py-24 bg-stone-50 border-b border-stone-100">
+        <div class="max-w-4xl mx-auto px-6 text-center animate__animated animate__fadeIn">
+            <span class="uppercase tracking-[0.5em] text-xs mb-6 block text-orange-300">Warisan Nusantara</span>
+            <h1 class="text-5xl md:text-7xl font-serif italic mb-6">Lebih Dari Sekedar <br> Secangkir Kopi</h1>
+            <h1>Perjalanan kami dimulai dari kekaguman akan keragaman hayati tanah Indonesia dan dedikasi para petani
+                lokal.</h1>
+        </div>
+    </header>
+
+    <section class="py-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+            <div class="reveal fade-bottom">
+                <span class="text-orange-900 font-bold text-[10px] uppercase tracking-widest mb-4 block">— Sejak
+                    2026</span>
+                <h2 class="text-4xl md:text-5xl font-serif mb-8 leading-tight">Berawal dari Akar, <br> Bertumbuh dengan
+                    Rasa.</h2>
+                <p class="text-stone-500 leading-relaxed mb-6">
+                    ASEANA Coffee lahir di Jakarta dengan satu misi sederhana: menghapuskan batasan antara penikmat kopi
+                    kota dengan dedikasi petani di pegunungan. Kami percaya bahwa setiap biji kopi memiliki identitas
+                    geografis yang unik.
+                </p>
+                <p class="text-stone-500 leading-relaxed">
+                    Kami menghabiskan waktu berbulan-bulan di perkebunan Gayo, Toraja, hingga Bali untuk memastikan
+                    setiap rantai pasok kami berjalan dengan adil dan berkelanjutan.
+                </p>
+            </div>
+            <div class="relative reveal fade-bottom" style="transition-delay: 0.2s">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800"
+                    class="w-full shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                <div
+                    class="absolute -bottom-10 -left-10 hidden md:block w-48 h-48 bg-stone-100 border border-stone-200 p-6">
+                    <p class="text-4xl font-serif text-orange-950 mb-2">100%</p>
+                    <p class="text-[10px] uppercase tracking-widest text-stone-400">Biji Kopi Asli Indonesia</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-stone-900 text-white">
+        <div class="max-w-7xl mx-auto px-6 text-center mb-20 reveal fade-bottom">
+            <h2 class="text-4xl font-serif italic mb-4">Proses Yang Kami Jaga</h2>
+            <p class="text-stone-500 text-sm tracking-widest uppercase">Dedikasi di setiap langkah produksi</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+            <div class="group text-center reveal fade-bottom">
+                <div
+                    class="w-16 h-16 border border-stone-700 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:border-orange-500 transition-colors">
+                    <span class="text-xl font-serif italic">01</span>
+                </div>
+                <h4 class="text-lg font-bold mb-4 uppercase tracking-widest">Sourcing</h4>
+                <p class="text-stone-400 text-sm leading-relaxed">Kami memilih hanya varietas Arabica dan Robusta grade
+                    tertinggi langsung dari petani mitra.</p>
+            </div>
+            <div class="group text-center reveal fade-bottom" style="transition-delay: 0.2s">
+                <div
+                    class="w-16 h-16 border border-stone-700 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:border-orange-500 transition-colors">
+                    <span class="text-xl font-serif italic">02</span>
+                </div>
+                <h4 class="text-lg font-bold mb-4 uppercase tracking-widest">Roasting</h4>
+                <p class="text-stone-400 text-sm leading-relaxed">Menggunakan teknik sangrai modern untuk menonjolkan
+                    karakter rasa unik tiap daerah.</p>
+            </div>
+            <div class="group text-center reveal fade-bottom" style="transition-delay: 0.4s">
+                <div
+                    class="w-16 h-16 border border-stone-700 rounded-full flex items-center justify-center mx-auto mb-8 group-hover:border-orange-500 transition-colors">
+                    <span class="text-xl font-serif italic">03</span>
+                </div>
+                <h4 class="text-lg font-bold mb-4 uppercase tracking-widest">Cupping</h4>
+                <p class="text-stone-400 text-sm leading-relaxed">Setiap batch melewati uji rasa ketat untuk menjamin
+                    kualitas rasa di tangan Anda.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+            <div class="order-2 md:order-1 reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800"
+                    class="w-full aspect-[4/5] object-cover shadow-2xl">
+            </div>
+            <div class="order-1 md:order-2 reveal fade-bottom">
+                <h3 class="text-3xl font-serif mb-6 italic">Pesan Dari Founder</h3>
+                <p class="text-xl text-stone-600 font-light italic mb-8 leading-relaxed">
+                    "Kopi adalah bahasa universal. Di ASEANA Coffee, kami ingin setiap sesapan menjadi penghormatan bagi
+                    mereka yang bekerja di bawah terik matahari demi menghasilkan ceri kopi terbaik."
+                </p>
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-[1px] bg-stone-900"></div>
+                    <p class="font-bold uppercase tracking-[0.2em] text-sm">Putraseana, Founder</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-stone-100 border-y border-stone-200">
+        <div class="max-w-4xl mx-auto px-6 text-center reveal fade-bottom">
+            <h2 class="text-4xl font-serif mb-8 italic">Mulai Perjalanan Rasa Anda</h2>
+            <p class="text-stone-500 mb-10">Temukan koleksi biji kopi pilihan yang disangrai dengan hati.</p>
+            <a href="#"
+                class="inline-block bg-stone-900 text-white px-12 py-5 font-bold uppercase text-[11px] tracking-[0.3em] hover:bg-orange-950 transition">Lihat
+                Katalog Produk</a>
+        </div>
+    </section>
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function () {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-white', 'text-stone-900', 'shadow-md', 'py-4');
+                nav.classList.remove('text-white', 'py-6', 'bg-transparent');
+            } else {
+                nav.classList.remove('bg-white', 'text-stone-900', 'shadow-md', 'py-4');
+                nav.classList.add('text-white', 'py-6', 'bg-transparent');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once to check initial position
+        reveal();
+    </script>
+    <footer class="py-12 bg-white text-center border-t border-stone-100">
+        <p class="text-[10px] uppercase tracking-[0.5em] text-stone-300">&copy; 2026 ASEANA Coffee Roastery. All Rights
+            Reserved.</p>
+    </footer>
+
+</body>
+
+</html>

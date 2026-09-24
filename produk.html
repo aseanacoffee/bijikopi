@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASEANA Coffee | Experience The Roastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600;700&display=swap');
+
+        :root {
+            --accent: #7c2d12;
+        }
+
+        /* Orange-950 */
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Skeleton Loading Effect */
+        .skeleton {
+            background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* Custom Scrollbar */
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Smooth Sidebar */
+        #cart-sidebar {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cart-open {
+            transform: translateX(0) !important;
+        }
+
+        /* Toast Notification */
+        #toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 200;
+        }
+
+        .product-card img {
+            transition: transform 0.8s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+
+<body class="bg-stone-50 text-stone-900">
+
+    <div id="toast-container" class="flex flex-col gap-3"></div>
+
+    <nav class="bg-white/80 backdrop-blur-xl border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tighter text-orange-950 font-serif italic">ASEANA<span
+                    class="text-stone-400 font-sans font-light not-italic tracking-widest ml-1 text-sm">COFFEE</span>
+            </div>
+
+            <div class="hidden md:flex space-x-10 text-[11px] font-bold uppercase tracking-[0.2em] text-stone-500">
+                <a href="index.html" class="text-orange-950 border-b border-orange-950">Beranda</a>
+                <a href="produk.html" class="text-orange-950 border-b border-orange-950">Koleksi Kopi</a>
+                <a href="tentang.html" class="text-orange-950 border-b border-orange-950">Gallery</a>
+                <a href="kontak.html" class="text-orange-950 border-b border-orange-950">Kontak</a>
+            </div>
+
+            <div class="flex items-center space-x-6">
+                <button onclick="toggleCart()" class="relative p-2 hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-bag-shopping text-xl"></i>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-orange-900 text-white text-[9px] w-5 h-5 flex items-center justify-center rounded-full font-bold animate__animated animate__bounceIn">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <span class="text-orange-800 font-bold text-[10px] uppercase tracking-[0.5em] mb-4 block">Specialty Grade
+                Only</span>
+            <h1 class="text-5xl md:text-7xl font-serif mb-6 italic">Signature Collection</h1>
+            <div class="h-1 w-24 bg-orange-950 mx-auto"></div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24 flex flex-col lg:flex-row gap-16">
+
+        <aside class="w-full lg:w-64 flex-shrink-0">
+            <div class="sticky top-32 space-y-12">
+                <div>
+                    <h4 class="font-bold text-[11px] uppercase tracking-widest mb-6 text-stone-400">Varietas</h4>
+                    <div class="flex flex-wrap lg:flex-col gap-3">
+                        <button onclick="filterBy('all')"
+                            class="filter-btn active bg-orange-950 text-white px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-full transition">Semua</button>
+                        <button onclick="filterBy('Arabica')"
+                            class="filter-btn border border-stone-200 px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-full hover:border-orange-900 transition">Arabica</button>
+                        <button onclick="filterBy('Robusta')"
+                            class="filter-btn border border-stone-200 px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-full hover:border-orange-900 transition">Robusta</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <section class="flex-1">
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-16">
+            </div>
+        </section>
+    </main>
+
+    <div id="modal-wrapper" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-stone-950/90 backdrop-blur-md" onclick="closeModal()"></div>
+        <div
+            class="bg-white max-w-5xl w-full max-h-[90vh] overflow-hidden rounded-sm shadow-2xl flex flex-col md:flex-row relative z-10 animate__animated animate__zoomIn animate__faster">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-stone-400 hover:text-black z-20"><i
+                    class="fa-solid fa-times text-2xl"></i></button>
+            <div class="md:w-1/2 bg-stone-100">
+                <img id="modal-img" src="" class="w-full h-full object-cover">
+            </div>
+            <div class="md:w-1/2 p-10 md:p-16 flex flex-col justify-center">
+                <span id="modal-tag"
+                    class="text-[10px] uppercase tracking-[0.4em] text-orange-900 font-bold mb-4"></span>
+                <h2 id="modal-title" class="text-4xl font-serif mb-6 leading-tight italic"></h2>
+                <div id="modal-price" class="text-2xl font-light text-stone-900 mb-8 border-b border-stone-100 pb-6">
+                </div>
+                <p id="modal-desc" class="text-stone-500 text-sm leading-relaxed mb-10 italic"></p>
+                <button id="modal-add-btn"
+                    class="w-full bg-stone-950 text-white py-5 hover:bg-orange-800 transition-all font-bold uppercase tracking-[0.2em] text-[11px]">Tambah
+                    ke Keranjang</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-sidebar"
+        class="fixed top-0 right-0 h-full w-full md:w-[480px] bg-white shadow-2xl z-[110] transform translate-x-full flex flex-col">
+        <div class="p-8 border-b flex justify-between items-center bg-stone-50">
+            <div>
+                <h2 class="text-xl font-serif">Keranjang Belanja</h2>
+                <p id="cart-count-detail" class="text-[10px] text-stone-400 uppercase tracking-widest mt-1">0 Items</p>
+            </div>
+            <button onclick="toggleCart()" class="text-stone-400 hover:text-black"><i
+                    class="fa-solid fa-xmark text-xl"></i></button>
+        </div>
+        <div id="cart-items" class="flex-1 overflow-y-auto p-8 space-y-8 hide-scroll"></div>
+        <div class="p-8 border-t bg-stone-50">
+            <div class="flex justify-between mb-8 items-end">
+                <span class="text-xs uppercase tracking-widest text-stone-400 font-bold">Subtotal</span>
+                <span id="cart-total" class="text-3xl font-bold text-orange-950">Rp 0</span>
+            </div>
+            <button onclick="checkoutWhatsApp()"
+                class="w-full bg-stone-950 text-white py-5 rounded-sm hover:bg-orange-800 transition flex items-center justify-center space-x-4 font-bold uppercase tracking-widest text-[11px]">
+                <i class="fa-brands fa-whatsapp text-xl"></i>
+                <span>Checkout via WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // DATA PRODUK
+        const products = [
+            { id: 1, name: "Gayo Mountain Reserve", category: "Arabica", roast: "Dark", price: 125000, img: "b.png", desc: "Profil rasa klasik Sumatera dengan body tebal, sentuhan cokelat hitam, dan rempah." },
+            { id: 2, name: "Fine Robusta Gold", category: "Robusta", roast: "Dark", price: 65000, img: "c.png", desc: "Robusta pilihan dengan karakter rasa kacang panggang yang kuat dan keasaman rendah." },
+            { id: 3, name: "Ijen Blue Mountain", category: "Arabica", roast: "Medium", price: 110000, img: "d.png", desc: "Cita rasa kompleks dengan aroma bunga melati dan sensasi akhir jeruk segar." },
+            { id: 4, name: "Bali Kintamani Honey", category: "Arabica", roast: "Medium", price: 105000, img: "e.png", desc: "Proses madu memberikan kemanisan buah tropis yang intens dan body bersih." }
+        ];
+
+        // INITIAL STATE DARI LOCALSTORAGE
+        let cart = JSON.parse(localStorage.getItem('aseana_coffee_cart')) || [];
+
+        // 1. RENDER PRODUK DENGAN SKELETON LOADING SIMULATION
+        function renderProducts(category = 'all') {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            // Tampilkan Skeletons
+            for (let i = 0; i < 3; i++) {
+                grid.innerHTML += `
+                    <div class="animate__animated animate__fadeIn">
+                        <div class="skeleton aspect-[4/5] mb-4 rounded-sm"></div>
+                        <div class="skeleton h-4 w-1/2 mx-auto mb-2"></div>
+                        <div class="skeleton h-6 w-3/4 mx-auto"></div>
+                    </div>
+                `;
+            }
+
+            // Simulasi Delay seolah mengambil data dari server
+            setTimeout(() => {
+                const filtered = category === 'all' ? products : products.filter(p => p.category === category);
+                grid.innerHTML = '';
+
+                filtered.forEach((p, idx) => {
+                    grid.innerHTML += `
+                        <div class="product-card group animate__animated animate__fadeInUp" style="animation-delay: ${idx * 0.1}s">
+                            <div class="relative aspect-[4/5] bg-stone-200 overflow-hidden mb-6 rounded-sm">
+                                <img src="${p.img}" class="w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-stone-900/10 group-hover:bg-stone-900/40 transition-all duration-500"></div>
+                                <div class="absolute bottom-6 left-6 right-6 translate-y-full group-hover:translate-y-0 transition-all duration-500 opacity-0 group-hover:opacity-100 flex gap-2">
+                                    <button onclick="openModal(${p.id})" class="flex-1 bg-white text-black py-4 font-bold text-[10px] uppercase tracking-widest hover:bg-orange-950 hover:text-white transition">Quick View</button>
+                                    <button onclick="addToCart(${p.id})" class="bg-white text-black px-6 hover:bg-orange-950 hover:text-white transition"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <span class="text-[9px] uppercase tracking-[0.4em] text-stone-400 font-bold mb-2 block">${p.category} • ${p.roast} Roast</span>
+                                <h3 class="text-2xl font-serif mb-2 italic">${p.name}</h3>
+                                <p class="font-bold text-orange-950">Rp ${p.price.toLocaleString()}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            }, 600);
+        }
+
+        // 2. TOAST NOTIFICATION
+        function showToast(message) {
+            const id = Date.now();
+            const container = document.getElementById('toast-container');
+            container.innerHTML += `
+                <div id="toast-${id}" class="bg-stone-900 text-white px-6 py-4 rounded-sm shadow-2xl flex items-center gap-4 animate__animated animate__fadeInRight animate__faster border-l-4 border-orange-600">
+                    <i class="fa-solid fa-check-circle text-orange-500"></i>
+                    <span class="text-xs font-bold uppercase tracking-widest">${message}</span>
+                </div>
+            `;
+            setTimeout(() => {
+                const el = document.getElementById(`toast-${id}`);
+                if (el) {
+                    el.classList.replace('animate__fadeInRight', 'animate__fadeOutRight');
+                    setTimeout(() => el.remove(), 500);
+                }
+            }, 3000);
+        }
+
+        // 3. CART PERSISTENCE LOGIC
+        function saveCart() {
+            localStorage.setItem('aseana_coffee_cart', JSON.stringify(cart));
+            updateUI();
+        }
+
+        function addToCart(id) {
+            const p = products.find(x => x.id === id);
+            const exists = cart.find(x => x.id === id);
+            if (exists) exists.qty++;
+            else cart.push({ ...p, qty: 1 });
+
+            showToast(`${p.name} Ditambah!`);
+            saveCart();
+        }
+
+        function updateUI() {
+            const list = document.getElementById('cart-items');
+            const totalLabel = document.getElementById('cart-total');
+            const countLabel = document.getElementById('cart-count');
+            const detailLabel = document.getElementById('cart-count-detail');
+
+            list.innerHTML = cart.length === 0 ? '<p class="text-center text-stone-300 py-20 uppercase tracking-widest text-[10px]">Your bag is empty</p>' : '';
+
+            let total = 0;
+            let totalQty = 0;
+
+            cart.forEach((item, idx) => {
+                total += item.price * item.qty;
+                totalQty += item.qty;
+                list.innerHTML += `
+                    <div class="flex gap-6 animate__animated animate__fadeIn">
+                        <img src="${item.img}" class="w-20 h-24 object-cover rounded-sm">
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-bold text-[11px] uppercase tracking-widest">${item.name}</h4>
+                                <button onclick="removeItem(${idx})" class="text-stone-300 hover:text-red-800"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
+                            <div class="flex justify-between items-end">
+                                <div class="flex items-center border border-stone-200">
+                                    <button onclick="changeQty(${idx}, -1)" class="px-2 py-1 text-[10px] hover:bg-stone-100"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="px-3 text-xs font-bold">${item.qty}</span>
+                                    <button onclick="changeQty(${idx}, 1)" class="px-2 py-1 text-[10px] hover:bg-stone-100"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                                <span class="font-bold text-sm">Rp ${(item.price * item.qty).toLocaleString()}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            totalLabel.innerText = `Rp ${total.toLocaleString()}`;
+            countLabel.innerText = totalQty;
+            detailLabel.innerText = `${totalQty} Items`;
+            countLabel.classList.add('animate__bounceIn');
+            setTimeout(() => countLabel.classList.remove('animate__bounceIn'), 1000);
+        }
+
+        function changeQty(idx, val) {
+            cart[idx].qty += val;
+            if (cart[idx].qty < 1) cart.splice(idx, 1);
+            saveCart();
+        }
+
+        function removeItem(idx) {
+            cart.splice(idx, 1);
+            saveCart();
+        }
+
+        // 4. NAVIGATION & MODAL UTILS
+        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('cart-open'); }
+
+        function openModal(id) {
+            const p = products.find(x => x.id === id);
+            document.getElementById('modal-img').src = p.img;
+            document.getElementById('modal-tag').innerText = `${p.category} • ${p.roast} ROAST`;
+            document.getElementById('modal-title').innerText = p.name;
+            document.getElementById('modal-price').innerText = `Rp ${p.price.toLocaleString()}`;
+            document.getElementById('modal-desc').innerText = p.desc;
+            document.getElementById('modal-add-btn').onclick = () => { addToCart(p.id); closeModal(); };
+            document.getElementById('modal-wrapper').classList.remove('hidden');
+            document.getElementById('modal-wrapper').classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-wrapper').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function filterBy(cat) {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active', 'bg-orange-950', 'text-white');
+                b.classList.add('border', 'border-stone-200');
+            });
+            event.target.classList.add('active', 'bg-orange-950', 'text-white');
+            renderProducts(cat);
+        }
+
+        function checkoutWhatsApp() {
+            if (cart.length === 0) return showToast("Keranjang Masih Kosong!");
+            let msg = "*ORDER BARU - ASEANA COFFEE*\n\n";
+            cart.forEach(i => msg += `- ${i.name} (${i.qty}x) = Rp ${(i.price * i.qty).toLocaleString()}\n`);
+            msg += `\n*TOTAL PEMBAYARAN: ${document.getElementById('cart-total').innerText}*`;
+            window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`);
+        }
+
+        // INIT
+        renderProducts();
+        updateUI();
+    </script>
+    <footer class="py-12 bg-white text-center border-t border-stone-100">
+        <p class="text-[10px] uppercase tracking-[0.5em] text-stone-300">&copy; 2026 ASEANA Coffee Roastery. All Rights
+            Reserved.</p>
+    </footer>
+
+</body>
+
+</html>
